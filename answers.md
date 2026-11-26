@@ -4,9 +4,6 @@
 
 ## Task 1: Problems and DevOps Solutions
 
-
-
-
 **Problem 1: Slow Deployment**
 
 Developers complete features in two weeks, but the Operations team deploys every three months. This causes delays.
@@ -312,3 +309,106 @@ git add README.md
 git commit -m "Update README with assignment details"
 git push origin main
 ```
+
+## Part 4: Branching, Merge Conflicts and Pull Requests
+
+### Task 1 – Create and Merge a Feature Branch
+
+**Commands:**
+```bash
+git switch -c add-notes
+echo "- Continuous integration helps detect errors early." >> notes.md
+git add notes.md
+git commit -m "Add DevOps notes"
+echo "- Automation makes software delivery faster and more reliable." >> notes.md
+git add notes.md
+git commit -m "Update DevOps notes"
+git switch main
+git merge add-notes
+git branch -d add-notes
+git log --oneline --graph --all
+```
+
+**Output:**
+
+The first commit was `825d53e Add DevOps notes`.
+
+The second commit was `980a8ed Update DevOps notes`.
+
+The merge completed successfully using fast-forward.
+
+**Explanation:**
+
+A fast-forward merge happens when the main branch has no new commits since the feature branch was created. Git moves the main branch pointer forward to include the feature branch commits without creating a separate merge commit.
+
+**Screenshot:**
+- screenshots/p4t1-graph.png – Git commit history graph.
+
+### Task 2 – Resolve a Merge Conflict
+
+**Commands:**
+```bash
+echo "Hello from main" > greeting.txt
+git add greeting.txt
+git commit -m "Add greeting file on main"
+
+git switch -c branch-a
+echo "Hello from A" > greeting.txt
+git add greeting.txt
+git commit -m "Change greeting to A"
+
+git switch main
+git switch -c branch-b
+echo "Hello from B" > greeting.txt
+git add greeting.txt
+git commit -m "Change greeting to B"
+
+git switch main
+git merge branch-a
+git merge branch-b
+cat greeting.txt
+```
+
+**Conflict output:**
+```text
+<<<<<<< HEAD
+Hello from A
+=======
+Hello from B
+>>>>>>> branch-b
+```
+
+**Explanation of conflict markers:**
+
+- `<<<<<<< HEAD` indicates the beginning of the current branch's changes.
+- `=======` separates the two conflicting versions.
+- `>>>>>>> branch-b` indicates the end of the incoming branch's changes.
+
+Git could not automatically resolve the conflict because both branches changed the same line with different content.
+
+**Resolution:**
+
+The conflict was resolved by keeping both greetings.
+
+```text
+Hello from A
+Hello from B
+```
+
+**Commands used to resolve and commit:**
+```bash
+printf 'Hello from A\nHello from B\n' > greeting.txt
+git add greeting.txt
+git commit -m "Resolve greeting merge conflict"
+git log --oneline --graph --all
+```
+
+**Merge commit:** `a2ea5eb Resolve greeting merge conflict`
+
+**Screenshots:**
+- screenshots/p4t2.png – Conflict markers.
+- screenshots/p4t2-merge.png – Merge commit graph.
+
+### Task 3 – Pull Requests
+
+Pending partner collaboration. Add both pull request links after completing the task.

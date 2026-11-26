@@ -1,6 +1,11 @@
+
+
 # Part 1 — DevOps Fundamentals
 
 ## Task 1: Problems and DevOps Solutions
+
+
+
 
 **Problem 1: Slow Deployment**
 
@@ -214,3 +219,72 @@ Listing... Done
 
 **Conclusion:** The user has sudo privileges and can manage system packages using administrative commands.
 
+
+
+
+## Part 3 – Git and GitHub
+
+### Task 1 – Connect Local Repository to GitHub
+
+Commands:
+```bash
+git remote add origin https://github.com/arafayZ/devops-assignment-1.git
+git remote -v
+git push -u origin main
+```
+
+The local repository was successfully connected to GitHub, and the main branch was pushed to the remote repository.
+
+### Task 2 – Create and Merge a Feature Branch
+
+Commands:
+```bash
+git switch -c feature-notes
+git branch
+nano notes.md
+git add notes.md
+git commit -m "Add DevOps notes on feature branch"
+git switch main
+git merge feature-notes
+git push
+```
+
+The feature-notes branch was created. A notes.md file was added and committed. The branch was successfully merged into main using a fast-forward merge.
+
+### Task 3 – Resolve a Merge Conflict
+
+Commands:
+```bash
+git switch -c conflict-branch
+nano conflict.txt
+git add conflict.txt
+git commit -m "Update project maintainer on conflict branch"
+git switch main
+nano conflict.txt
+git add conflict.txt
+git commit -m "Update project maintainer on main branch"
+git merge conflict-branch
+```
+
+Git reported a content conflict because both branches modified the same line in conflict.txt.
+
+The conflict was resolved manually by keeping both changes:
+
+```text
+This project is maintained by the IT Department and DevOps team.
+```
+
+The resolved file was staged and committed:
+
+```bash
+git add conflict.txt
+git commit -m "Resolve merge conflict in conflict.txt"
+git log --oneline --graph --all -6
+```
+
+The merge was completed successfully.
+
+**Screenshots:**
+- screenshots/p3t1.png – Branch creation
+- screenshots/p3t2.png – Feature branch merge
+- screenshots/p3t3.png – Merge conflict resolution

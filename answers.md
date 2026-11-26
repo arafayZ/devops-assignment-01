@@ -288,3 +288,27 @@ The merge was completed successfully.
 - screenshots/p3t1.png – Branch creation
 - screenshots/p3t2.png – Feature branch merge
 - screenshots/p3t3.png – Merge conflict resolution
+
+
+
+
+
+
+### Task – Understanding the Three Git Areas
+
+**1. Working Directory:**  
+The working directory is where we create, edit, and modify project files.
+
+**2. Staging Area:**  
+The staging area contains changes selected for the next commit. We use `git add` to move changes into this area.
+
+**3. Repository:**  
+The repository stores committed changes and maintains the project's version history.
+
+**Commands used:**
+```bash
+git status
+git add README.md
+git commit -m "Update README with assignment details"
+git push origin main
+```

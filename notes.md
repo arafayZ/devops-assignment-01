@@ -1,0 +1,5 @@
+# DevOps Notes
+
+- Git helps track changes in a project.
+- Branches allow developers to work independently.
+- Merging combines changes from different branches.
